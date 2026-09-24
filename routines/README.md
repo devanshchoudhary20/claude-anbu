@@ -36,7 +36,18 @@ The cloud sandbox has a network egress allowlist. `hn.algolia.com` and `reddit.c
 
 ## Cloud environment checklist for `/mission --cloud`
 
-Same dialog, **Environment variables** box, `.env` format. Values are visible to any session in the environment, which on a personal Pro/Max account means only you. The **API credentials** section below it is the safer option for bearer tokens (the proxy injects them and the session never sees the value), but the Vercel CLI refuses to run non-interactively without `VERCEL_TOKEN` in env, so that one stays an env var.
+Same dialog. Secrets go in **API credentials**, not Environment variables: the dialog itself says variables are visible to anyone using the environment, and a credential is injected by Anthropic's proxy so the session never sees the value. Verified 2026-09-24: with a Vercel credential on `api.vercel.com`, a bare `curl https://api.vercel.com/v2/user` from the sandbox returns 200.
+
+The Vercel CLI still needs a `VERCEL_TOKEN` variable or it tries to log in interactively, and it validates the format locally (no hyphens allowed). So set a dummy in Environment variables and let the proxy swap the real one in:
+
+```
+VERCEL_TOKEN=proxyinjected
+```
+
+| Credential (API credentials section) | Allowed websites | Header |
+|---|---|---|
+| Vercel token from vercel.com/account/tokens | `api.vercel.com` | Authorization / Bearer |
+| dev.to API key from dev.to/settings/extensions | `dev.to` | `api-key`, no prefix |
 
 | Variable | Used by | How to get it |
 |---|---|---|
@@ -53,7 +64,9 @@ GitHub push works through the cloud session's proxied credentials; no token need
 #!/bin/bash
 npm i -g vercel chrome-webstore-upload-cli || true
 npx -y playwright install --with-deps chromium || true
-``` Claude in Chrome does not run in the cloud; the tester falls back to Playwright MCP, which needs `npx @playwright/mcp` reachable, so add `registry.npmjs.org` and `playwright.azureedge.net` to the allowlist.
+```
+
+The sandbox already ships Playwright browsers under `/opt/pw-browsers`; the second line is a no-op safety net. Claude in Chrome does not run in the cloud; the tester falls back to Playwright MCP, which needs `npx @playwright/mcp` reachable, so add `registry.npmjs.org` and `playwright.azureedge.net` to the allowlist.
 
 ## Alerts
 
