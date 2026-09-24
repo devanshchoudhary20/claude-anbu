@@ -1,0 +1,19 @@
+{
+  "slug": "",
+  "track": "weekend",
+  "started": "",
+  "flags": { "yolo": false, "cloud": false },
+  "phase": "think",
+  "phases": {
+    "think": { "status": "pending", "artifact": ".anbu/plan.md", "done_at": null },
+    "design": { "status": "pending", "artifact": ".anbu/screens.md", "done_at": null },
+    "build": { "status": "pending", "artifact": "git log", "done_at": null, "chunks": [] },
+    "test": { "status": "pending", "artifact": ".anbu/evidence/report.md", "done_at": null },
+    "ship": { "status": "pending", "artifact": "url", "done_at": null, "url": null },
+    "launch": { "status": "pending", "artifact": ".anbu/launch-kit.md", "done_at": null }
+  },
+  "attempts": { "think": 0, "design": 0, "build": {}, "test": {}, "ship": 0, "launch": 0 },
+  "verifier": { "build": null, "test": null, "yellow_items": [] },
+  "paused": null,
+  "tokens_by_phase": {}
+}
