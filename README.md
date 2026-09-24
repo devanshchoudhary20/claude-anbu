@@ -57,14 +57,18 @@ Cost guards: 3 builder attempts per chunk, 3 test-fix loops per screen, then the
 - **Cloud, laptop closed:** `claude --cloud` then `/mission <slug>`. Testing switches to Playwright MCP (headless). Deploy needs `VERCEL_TOKEN` in the cloud environment. See `routines/README.md` for the environment checklist and the network allowlist.
 - **Scheduled:** `/scan` and `/radar` run as cloud routines. Alerts arrive as mobile push.
 
-## Install
+## Install on a fresh machine
+
+Prerequisites: node 20+, git, `gh`, Claude Code, and a claude.ai Pro or Max login. Then:
 
 ```bash
 git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer/personal/claude-anbu
 ~/developer/personal/claude-anbu/setup.sh
 ```
 
-`setup.sh` symlinks `skills/*` and `agents/*` into `~/.claude/` next to the cerebrum ones. Both repos stay independent. `uninstall.sh` removes only ANBU's links.
+`setup.sh` is idempotent. It links `skills/` and `agents/` into `~/.claude`, appends the ANBU section to `~/.claude/CLAUDE.md`, clones the vault to `~/developer/personal/idea-engine`, installs the `vercel` and `chrome-webstore-upload` CLIs, the `frontend-design` plugin, and the Context7 and Playwright MCPs, and prints the four things that stay manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, the Claude in Chrome extension, and the Figma plugin authorization. `uninstall.sh` removes only ANBU's links.
+
+The cloud environment (network allowlist, Vercel credential, setup script) lives on your claude.ai account, not the machine, so it carries over. See `routines/README.md`.
 
 ## Layout
 
