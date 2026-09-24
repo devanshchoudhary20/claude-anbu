@@ -83,5 +83,6 @@ git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer
 - [x] Skills, playbook, agents, rubric, routines, templates
 - [x] `setup.sh` compose-linked into `~/.claude`
 - [ ] First mission shipped end to end through `/mission`
-- [ ] Cloud environment: network allowlist + `VERCEL_TOKEN` + Chrome Web Store creds
+- [x] Cloud environment: Custom allowlist, setup script, Vercel via API credential (verified 2026-09-24: `vercel whoami` works in the sandbox)
+- [ ] Chrome Web Store credentials (needed only for automated extension upload)
 - [x] `/radar` routine created (weekly Sunday 8:00 IST, Fable) and `idea-scan` re-pointed at the dual-track prompt with WebSearch fallback
