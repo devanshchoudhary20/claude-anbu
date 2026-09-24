@@ -31,6 +31,8 @@ Used by `/radar` and by THINK when an idea is tagged `track: moonshot`. Eight cr
 | 1 | Picks-and-shovels on a shift | Sits on infrastructure a new platform layer needs but hasn't built, not the app layer incumbents will out-execute. |
 | 1 | Capital already positioned | The category appears in a current YC RFS or a16z theme list. |
 
+Big-game admission: Rubric B at 7+ AND a `## Demand` section with two independent sources. Then `track: big`.
+
 Verdicts: 8-10 is a first-mover alert, push it to the phone and open a `track: moonshot` idea at `status: exploring`. 6-7 goes to the inbox tagged moonshot. Below 6 gets one line in `scanner/log.md` and nothing else.
 
 ## The 2026 shifts to score against

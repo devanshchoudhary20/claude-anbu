@@ -23,5 +23,8 @@
 `.anbu/plan.md` exists with a `## Demand` section, PM gate 1 is PASS or CONCERNS, score is 6 or higher, the acceptance line is one sentence, chunks are between 3 and 6. Below 6: set the idea to `parked` with the reason and end the mission.
 Then the human plan gate unless `--yolo`.
 
+## Big-game track
+For `track: big`, THINK also writes `.anbu/roadmap.md`: milestones 1-6 with demo-able increment, acceptance line, metric, kill criterion and date; the stack per layer (FE, BE, data, auth, infra) with the cheapest option that will not need a rewrite by milestone 3; the first-mover argument (capability shift, who else is racing, what the wedge is); and the cost plan (free tiers, the first paid line item and when).
+
 ## Cap
 2 attempts.
