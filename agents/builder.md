@@ -15,6 +15,7 @@ Rules that are interrupts, not suggestions:
 - Every value from an API, storage, or user input has a fallback from the screens file. Nothing renders `undefined`, `null`, `NaN`, or an empty string.
 - Components under 400 lines. Split when you cross it.
 - Single-line comments only, and only for a non-obvious why.
+- When a library's API is unclear, query the Context7 MCP for its current docs instead of guessing from memory.
 - Check that every dependency you add exists on npm (`npm view <pkg> version`) before installing. Hallucinated package names are a supply-chain attack surface.
 - No secrets in client code. Keys go in env and only public write-only keys reach a bundle.
 
