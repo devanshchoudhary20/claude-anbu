@@ -86,7 +86,7 @@ The cloud environment (network allowlist, Vercel credential, setup script) lives
 
 - [x] Skills, playbook, agents, rubric, routines, templates
 - [x] `setup.sh` compose-linked into `~/.claude`
-- [ ] First mission shipped end to end through `/mission`
+- [x] First mission shipped end to end through `/mission`: [pr-preflight](https://github.com/devanshchoudhary20/pr-preflight), 2026-09-24 (store upload manual)
 - [x] Cloud environment: Custom allowlist, setup script, Vercel via API credential (verified 2026-09-24: `vercel whoami` works in the sandbox)
 - [ ] Chrome Web Store credentials (needed only for automated extension upload)
 - [x] `/radar` routine created (weekly Sunday 8:00 IST, Fable) and `idea-scan` re-pointed at the dual-track prompt with WebSearch fallback
