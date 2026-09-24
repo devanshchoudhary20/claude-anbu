@@ -37,6 +37,7 @@ The vault (ideas, board, profile) lives in `~/developer/personal/idea-engine`. B
 |---|---|---|
 | Thinking, validation, planning, council | `strategist` | Fable |
 | Adversarial verification after build and test | `verifier` | Fable |
+| Plan, design, and ship review like a real PM | `pm` | Fable |
 | UX flows, screens, states, tokens | `designer` | Sonnet |
 | Implementation, chunk by chunk | `builder` | Sonnet |
 | Driving the browser, collecting evidence | `tester` | Sonnet |

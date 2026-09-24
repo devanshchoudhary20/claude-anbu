@@ -9,9 +9,12 @@
 ## Steps
 1. Start the dev server in the background. For an extension, build to `dist/` and load it unpacked.
 2. Local: use Claude in Chrome for web pages. Extension pages (`chrome-extension://…/options.html`, `popup.html`) are off-limits to Claude in Chrome even when the user opens the tab; drive those with a Playwright script (`chromium.launchPersistentContext` with `--load-extension=dist`) kept as `scripts/e2e-extension.mjs` in the project. Cloud: Playwright for everything. Same script either way: for every screen, drive the happy path, then force the empty, loading, and error states (block the network request, clear storage, send bad input).
-3. Record a GIF per screen locally, or screenshots per state in cloud, into `.anbu/evidence/`. Read the console for errors after every screen. Run axe on each screen if the page is a web app.
+3. Record a GIF per screen locally, or screenshots per state in cloud, into `.anbu/evidence/`. Every screen also gets a still in BOTH themes (`<screen>-light.png`, `<screen>-dark.png`), captured with Playwright `colorScheme` so the PM can compare against the Figma frames. Read the console for errors after every screen. Run axe on each screen if the page is a web app.
 4. Write `.anbu/evidence/report.md`: a table of screen, state, pass or fail, evidence file, console errors.
 5. Any fail: hand the exact state and console output to `builder`, one fix attempt, rerun that screen only.
+
+## Steps (continued)
+6. PM gate 3: spawn `pm` for the ship review on the evidence, the Figma frames, and the plan. FAIL routes findings to one builder fix loop then re-tests the affected screens. CONCERNS continues to SHIP with the findings logged. A WAIVED 4 needs the captain's written reason in state.
 
 ## Gate
 `report.md` has every screen and state from the screens file marked pass, zero console errors, and the verifier confirms the evidence files exist and match the claims.

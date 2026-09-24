@@ -14,6 +14,10 @@
 4. Component plan: which shadcn or Radix pieces, which custom. Custom needs a reason.
 5. Write `.anbu/screens.md`. Optional: if the Figma MCP is connected and the user asked for Figma, push the screens to a Figma file and record the link.
 
+## Steps (continued)
+6. Figma: push the screens to a Figma file (light and dark frames per screen) when the Figma MCP is connected. Record the file URL and frame ids at the end of `.anbu/screens.md`.
+7. PM gate 2: spawn `pm` on the mockups. FAIL returns to the designer with the findings (counts an attempt). CONCERNS or PASS continues; CONCERNS findings are carried into the builder prompts.
+
 ## Gate
 `.anbu/screens.md` lists every screen from the plan with all four states, plus a tokens section. Project builds empty (`npm run build` exit 0).
 

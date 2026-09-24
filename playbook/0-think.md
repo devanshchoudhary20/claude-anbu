@@ -15,8 +15,12 @@
 5. List risks with a mitigation each: store review latency, API cost, DOM selector fragility, and whatever is specific.
 6. Produce `.anbu/plan.md`: score, acceptance line, later list, stack, screens (names only), chunks for BUILD (3-6, each one vertical slice), risks, the two distribution channels.
 
+## Steps (continued)
+7. Demand evidence, before scoring: the strategist gathers at least two of the sources in Rubric C1.6 (HN Algolia pain queries, `gh api search/issues` sorted by reactions, competitor 1-2 star reviews, "wish this existed" searches) and writes them into `.anbu/plan.md` under `## Demand`. No demand section, no plan.
+8. PM gate 1: spawn `pm` on the plan. FAIL sends the findings back to the strategist (counts an attempt). CONCERNS goes to the human gate with the findings listed. PASS continues.
+
 ## Gate
-`.anbu/plan.md` exists, score is 6 or higher, the acceptance line is one sentence, chunks are between 3 and 6. Below 6: set the idea to `parked` with the reason and end the mission.
+`.anbu/plan.md` exists with a `## Demand` section, PM gate 1 is PASS or CONCERNS, score is 6 or higher, the acceptance line is one sentence, chunks are between 3 and 6. Below 6: set the idea to `parked` with the reason and end the mission.
 Then the human plan gate unless `--yolo`.
 
 ## Cap

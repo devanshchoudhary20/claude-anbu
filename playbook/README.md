@@ -11,4 +11,6 @@ One file per phase. `/mission` reads the file for the phase it is entering and n
 | 4 | ship | shipper (Sonnet) | a live URL that returns 200 from `curl`, or a store item id |
 | 5 | launch | shipper (Sonnet) | `.anbu/launch-kit.md` plus analytics wired |
 
+The `pm` agent (Fable) gates three of these: plan review at the end of think, design review at the end of design, ship review at the end of test. Verdicts PASS / CONCERNS / FAIL / WAIVED per Rubric C.
+
 The old weekend `PLAYBOOK.md` in the vault is superseded by this directory.
