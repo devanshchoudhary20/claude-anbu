@@ -15,14 +15,28 @@ Manual run of `idea-scan` after the rewrite: every curl (HN, GitHub, Product Hun
 
 The cloud sandbox has a network egress allowlist. `hn.algolia.com` and `reddit.com` were not on it, so every `curl` returned empty and the routine committed a heartbeat and nothing else from June to September 2026, except on the days the allowlist happened to let something through. The fix is two-sided:
 
-1. **Allowlist the sources** in the cloud environment (https://claude.ai/code/environments, environment `Default`): `hn.algolia.com`, `api.github.com`, `www.producthunt.com`, `huggingface.co`, `www.reddit.com`, `registry.npmjs.org`.
-Note: `api.github.com` is repository-scoped inside a routine (the proxied token only reaches the configured repo), so the GitHub star-velocity search always falls back to WebSearch in the cloud. It works locally.
+1. **Allowlist the sources** in the cloud environment. There is no settings URL: at https://claude.ai/code, click the cloud icon showing `Default` in the row above the message box, hover `Default`, click the gear, set **Network access** to **Custom**, tick **Also include default list of common package managers**, and paste into **Allowed domains**:
+
+   ```
+   hn.algolia.com
+   www.reddit.com
+   www.producthunt.com
+   huggingface.co
+   cdn.playwright.dev
+   playwright.azureedge.net
+   api.vercel.com
+   vercel.com
+   www.googleapis.com
+   oauth2.googleapis.com
+   ```
+
+   `api.github.com` and `registry.npmjs.org` are already on the default list. GitHub goes through its own proxy and is repository-scoped regardless.
 
 2. **Give the routine the WebSearch and WebFetch tools.** They run on Anthropic's side, not through the sandbox egress, so they work even when curl is blocked. `scanner/SOURCES.md` now lists a WebSearch fallback query next to every curl.
 
 ## Cloud environment checklist for `/mission --cloud`
 
-Set these in the environment so a mission can ship with the laptop closed:
+Same dialog, **Environment variables** box, `.env` format. Values are visible to any session in the environment, which on a personal Pro/Max account means only you. The **API credentials** section below it is the safer option for bearer tokens (the proxy injects them and the session never sees the value), but the Vercel CLI refuses to run non-interactively without `VERCEL_TOKEN` in env, so that one stays an env var.
 
 | Variable | Used by | How to get it |
 |---|---|---|
@@ -31,7 +45,15 @@ Set these in the environment so a mission can ship with the laptop closed:
 | `EXTENSION_ID` `CLIENT_ID` `CLIENT_SECRET` `REFRESH_TOKEN` | shipper, Chrome Web Store upload | github.com/fregante/chrome-webstore-upload-keys |
 | `POSTHOG_KEY` (public write-only) | builder, analytics | posthog.com project settings |
 
-GitHub push works through the cloud session's proxied credentials; no token needed. Claude in Chrome does not run in the cloud; the tester falls back to Playwright MCP, which needs `npx @playwright/mcp` reachable, so add `registry.npmjs.org` and `playwright.azureedge.net` to the allowlist.
+GitHub push works through the cloud session's proxied credentials; no token needed.
+
+**Setup script** (same dialog, runs as root on Ubuntu 24.04, must exit 0 within 5 minutes):
+
+```bash
+#!/bin/bash
+npm i -g vercel chrome-webstore-upload-cli || true
+npx -y playwright install --with-deps chromium || true
+``` Claude in Chrome does not run in the cloud; the tester falls back to Playwright MCP, which needs `npx @playwright/mcp` reachable, so add `registry.npmjs.org` and `playwright.azureedge.net` to the allowlist.
 
 ## Alerts
 
