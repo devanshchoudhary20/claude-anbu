@@ -16,3 +16,7 @@ One dated entry per shipped mission, appended by LAUNCH and read by THINK. Keep 
 - One builder stalled (600 s watchdog) mid-edit; resuming the same agent with a three-step finish list was cheaper than a fresh spawn.
 - `create-vite --overwrite` wiped `.anbu/`: DESIGN now scaffolds before creating `.anbu/`, or into a temp dir.
 - Three 'stale build' test runs on pr-preflight were caused by the captain rebuilding `dist/` after the user reloaded the unpacked extension: hashed asset names change, the loaded manifest points at missing files, the content script dies silently. Never build between the reload and the test.
+
+## 2026-09-25 · sesh M0 (in progress)
+- A terminal-state reducer plus React StrictMode's double-mount latches a phantom socket's late close as an error. Any socket effect must ignore events from a socket it no longer owns. The fix that made states terminal created this; verify a fix against the dev double-mount, not only the happy path.
+- Every fix loop found by Claude in Chrome was a real bug (per-tab tokens, ended broadcast, host exit flush, invalid room signal, contrast, stale sockets). Unit tests were green throughout; the browser was the only thing that saw them.
