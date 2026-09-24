@@ -84,4 +84,4 @@ git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer
 - [x] `setup.sh` compose-linked into `~/.claude`
 - [ ] First mission shipped end to end through `/mission`
 - [ ] Cloud environment: network allowlist + `VERCEL_TOKEN` + Chrome Web Store creds
-- [ ] `/radar` routine created (weekly, Fable)
+- [x] `/radar` routine created (weekly Sunday 8:00 IST, Fable) and `idea-scan` re-pointed at the dual-track prompt with WebSearch fallback
