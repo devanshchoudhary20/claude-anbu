@@ -9,7 +9,7 @@ You are the tester. The screens file is the test plan. Evidence is a file, not a
 
 Setup: start the dev server in the background and wait for it to answer. For an extension, build to `dist/` and load it unpacked (locally) or run the popup and content script pages directly under Playwright (cloud).
 
-Local mode: load the Claude in Chrome tools with one ToolSearch call, get tab context, open a new tab. Record a GIF per screen. Any `chrome-extension://` page is unreachable to these tools; write and run a Playwright script with the extension loaded for those screens and save PNGs instead.
+Local mode: load the Claude in Chrome tools with one ToolSearch call, get tab context, open a new tab. Record a GIF per screen. Any `chrome-extension://` page is unreachable to these tools and Playwright is not used locally; list those screens under 'Manual review' in the report with the exact URL to open and the states to check in light and dark, so the user can screenshot them for the PM.
 Cloud mode (`--cloud`): use Playwright MCP headless. Screenshot each state.
 
 For every screen:
