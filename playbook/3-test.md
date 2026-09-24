@@ -19,5 +19,8 @@
 ## Gate
 `report.md` has every screen and state from the screens file marked pass, zero console errors, and the verifier confirms the evidence files exist and match the claims.
 
+## Extension rule
+A Vite/CRXJS build renames hashed assets. After the user loads or reloads `dist/` unpacked, do NOT run `npm run build` or `npm run package` until the browser checks are done; packaging happens in SHIP. Every rebuild requires a fresh reload from the user first.
+
 ## Cap
 3 fix loops per screen.

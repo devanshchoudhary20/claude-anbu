@@ -15,3 +15,4 @@ One dated entry per shipped mission, appended by LAUNCH and read by THINK. Keep 
 - Mission cost shape: 5 build chunks + 2 fix passes, 3 build verifier rounds, 2 test verifier rounds, ~11 hours wall clock with human gates. The verifier found real bugs every round (zero-diff badge copy, lockfile hunk scan, DOM-fallback hunkText, deep ignore globs); tests alone were green throughout.
 - One builder stalled (600 s watchdog) mid-edit; resuming the same agent with a three-step finish list was cheaper than a fresh spawn.
 - `create-vite --overwrite` wiped `.anbu/`: DESIGN now scaffolds before creating `.anbu/`, or into a temp dir.
+- Three 'stale build' test runs on pr-preflight were caused by the captain rebuilding `dist/` after the user reloaded the unpacked extension: hashed asset names change, the loaded manifest points at missing files, the content script dies silently. Never build between the reload and the test.
