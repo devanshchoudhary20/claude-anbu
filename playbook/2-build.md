@@ -9,7 +9,7 @@
 
 ## Steps
 1. For each chunk in order: spawn `builder` with the chunk contract. It implements the vertical slice, runs `npm run build` and `npm run lint`, commits "feat(<chunk>): ...", and returns the changed files and any deviations from the screens file.
-2. After each chunk, run `/review-checkpoint` on the diff. Under 7: send the findings back to the same builder, count an attempt.
+2. After each chunk, run `/review-checkpoint` on the diff. Its eight axes are generic; the spec-fidelity axis must be judged against `.anbu/plan.md`, `.anbu/screens.md`, and the Figma frames named there, never against a ticket. Ignore any company-only reference inside the skill (contracts, V2/V4). Under 7: send the findings back to the same builder, count an attempt.
 3. Wire analytics early if the plan has a channel that needs it (PostHog free tier or none).
 4. After the last chunk, spawn `verifier` with the full diff, the plan, and the screens file. It hunts: falsy values rendered, logic in JSX, components over 400 lines, secrets in client code, hallucinated packages (check every dependency exists on npm), unused abstractions.
 
