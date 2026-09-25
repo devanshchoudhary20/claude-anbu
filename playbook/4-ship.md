@@ -7,6 +7,7 @@
 - Stack from the plan, `--cloud` flag, the repo.
 
 ## Steps
+0. Account check: personal accounts only. Verify `gh auth status`, `npm whoami`, `npx wrangler whoami`, and any browser sign-in page show the personal account before continuing.
 1. Create the GitHub repo under `devanshchoudhary20` with `gh repo create --public --source . --push` using the personal SSH host `github.com-personal`. README must have: what it is, one screenshot from evidence, how to run, how to deploy.
 2. Web app: `vercel deploy --prod` (token from `VERCEL_TOKEN` in cloud, keychain login locally). Static: Vercel or GitHub Pages. Record the URL.
 3. Extension: `npm run build`, zip `dist/`, then `chrome-webstore-upload upload` if `EXTENSION_ID`, `CLIENT_ID`, `CLIENT_SECRET`, `REFRESH_TOKEN` are set. Not set: write the store listing to `.anbu/store-listing.md` and stop at the launch gate with the manual upload as step one. Never call `publish`, only `upload`; publishing is a human gate.
