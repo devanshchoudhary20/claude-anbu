@@ -17,8 +17,11 @@ One dated entry per shipped mission, appended by LAUNCH and read by THINK. Keep 
 - `create-vite --overwrite` wiped `.anbu/`: DESIGN now scaffolds before creating `.anbu/`, or into a temp dir.
 - Three 'stale build' test runs on pr-preflight were caused by the captain rebuilding `dist/` after the user reloaded the unpacked extension: hashed asset names change, the loaded manifest points at missing files, the content script dies silently. Never build between the reload and the test.
 
-## 2026-09-25 · sesh M0 (in progress)
+## 2026-09-25 · sesh M0 (deployed)
 - A terminal-state reducer plus React StrictMode's double-mount latches a phantom socket's late close as an error. Any socket effect must ignore events from a socket it no longer owns. The fix that made states terminal created this; verify a fix against the dev double-mount, not only the happy path.
 - Every fix loop found by Claude in Chrome was a real bug (per-tab tokens, ended broadcast, host exit flush, invalid room signal, contrast, stale sockets). Unit tests were green throughout; the browser was the only thing that saw them.
 - Two of six sesh M0 test loops were StrictMode double-mount bugs (socket, then terminal). Test the production build with `vite preview`; a dev server is not the artifact. Now in playbook 3-test.
 - Terminal emulators rendering third-party truecolor output cannot be made contrast-compliant by theming; keep terminals dark in both page themes.
+- The PM gate caught the one thing no test could: the npm name was taken by an unrelated package, so the headline command would have failed for every stranger. Plan reviews must check that names resolve.
+- Cloudflare: free-plan Durable Objects need `new_sqlite_classes` in migrations; `wrangler pages project create` needs `--force` for a classic Pages project.
+- Testers must write evidence under the project's `.anbu/`, never the vault; the captain checks the path on every report.

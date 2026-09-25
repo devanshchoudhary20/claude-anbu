@@ -90,4 +90,5 @@ The cloud environment (network allowlist, Vercel credential, setup script) lives
 - [x] First mission shipped end to end through `/mission`: [pr-preflight](https://github.com/devanshchoudhary20/pr-preflight), 2026-09-24 (store upload manual)
 - [x] Cloud environment: Custom allowlist, setup script, Vercel via API credential (verified 2026-09-24: `vercel whoami` works in the sandbox)
 - [ ] Chrome Web Store credentials (needed only for automated extension upload)
+- [x] First big-game milestone deployed through `/mission` in milestone mode: [sesh-live](https://github.com/devanshchoudhary20/sesh-live) M0 probe, 2026-09-25 (npm publish and the probe posts are the human's)
 - [x] `/radar` routine created (weekly Sunday 8:00 IST, Fable) and `idea-scan` re-pointed at the dual-track prompt with WebSearch fallback
