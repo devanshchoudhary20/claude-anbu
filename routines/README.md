@@ -53,7 +53,7 @@ VERCEL_TOKEN=proxyinjected
 |---|---|---|
 | `VERCEL_TOKEN` | shipper, web deploys | vercel.com/account/tokens |
 | `DEVTO_API_KEY` | shipper, launch article | dev.to/settings/extensions |
-| `EXTENSION_ID` `CLIENT_ID` `CLIENT_SECRET` `REFRESH_TOKEN` | shipper, Chrome Web Store upload | github.com/fregante/chrome-webstore-upload-keys |
+| `EXTENSION_ID` `CLIENT_ID` `CLIENT_SECRET` `REFRESH_TOKEN` | shipper, Chrome Web Store upload | github.com/fregante/chrome-webstore-upload-keys. PR Preflight's `EXTENSION_ID` is `khgpmbkndlkngcldfafgkkjgaabconfp` (first submission done by hand 2026-09-25; the dashboard cannot be scripted by any extension, so the first listing is always manual). |
 | `POSTHOG_KEY` (public write-only) | builder, analytics | posthog.com project settings |
 
 GitHub push works through the cloud session's proxied credentials; no token needed.
