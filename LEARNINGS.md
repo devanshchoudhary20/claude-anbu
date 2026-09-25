@@ -20,3 +20,5 @@ One dated entry per shipped mission, appended by LAUNCH and read by THINK. Keep 
 ## 2026-09-25 · sesh M0 (in progress)
 - A terminal-state reducer plus React StrictMode's double-mount latches a phantom socket's late close as an error. Any socket effect must ignore events from a socket it no longer owns. The fix that made states terminal created this; verify a fix against the dev double-mount, not only the happy path.
 - Every fix loop found by Claude in Chrome was a real bug (per-tab tokens, ended broadcast, host exit flush, invalid room signal, contrast, stale sockets). Unit tests were green throughout; the browser was the only thing that saw them.
+- Two of six sesh M0 test loops were StrictMode double-mount bugs (socket, then terminal). Test the production build with `vite preview`; a dev server is not the artifact. Now in playbook 3-test.
+- Terminal emulators rendering third-party truecolor output cannot be made contrast-compliant by theming; keep terminals dark in both page themes.
