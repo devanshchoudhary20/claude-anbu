@@ -26,3 +26,4 @@ One dated entry per shipped mission, appended by LAUNCH and read by THINK. Keep 
 - Cloudflare: free-plan Durable Objects need `new_sqlite_classes` in migrations; `wrangler pages project create` needs `--force` for a classic Pages project.
 - Testers must write evidence under the project's `.anbu/`, never the vault; the captain checks the path on every report.
 - The Chrome Web Store Developer Dashboard cannot be driven by Claude in Chrome: Chrome refuses to script the extensions gallery. First submission is manual by a person; later uploads go through the API with the item id.
+- npm 11 rejects `bin` paths with a `./` prefix and silently strips the command at publish; use `index.js`. Publish needs 2FA on the account; the browser-confirm flow fails from a non-TTY runner, so the user runs `npm publish --otp=<code>` in a real terminal.
