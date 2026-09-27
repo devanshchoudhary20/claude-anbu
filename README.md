@@ -2,15 +2,15 @@
 
 > _the Hokage's black-ops unit: give it a mission, it comes back with a shipped product._
 
-`claude-anbu` is the central Claude Code agent system for personal work. MEGAMIND (`claude-cerebrum`) is the company brain. ANBU is the personal one. One command takes an idea from "should this exist?" to a live URL with a launch post drafted, and a scheduled scout keeps the vault fed with both weekend builds and moonshots.
+`claude-anbu` is the central Claude Code agent system for personal work. MEGAMIND (`claude-cerebrum`) is the company brain. ANBU is the personal one. One command takes an idea from "should this exist?" to a live URL with a launch post drafted, and two scheduled routines keep the vault fed: a deep weekly prospect for big SaaS bets and a cheap scout for weekend builds.
 
 ## The loop
 
 ```
-  scout (cloud, cheap)  ──2-3x/week──▶  VAULT inbox  ◀── /idea (you)
-  radar (cloud, Fable)  ──weekly────▶  moonshot shortlist + push alert on a first-mover signal
+  prospect (cloud, Fable) ──weekly──▶  BIG TRACK: zero-ops SaaS ideas + weekly brief, push alert on 8+
+  scout (cloud, cheap)    ──weekly──▶  WEEKEND inbox, bigger signals → leads for prospect   ◀── /idea (you)
                                             │
-                                     /weekend  → pick one
+                            /weekend or a big idea at 7+  → pick one
                                             │
                                      /mission <slug>
                                             │
@@ -30,9 +30,9 @@ ANBU also owns the portable base layer of the Claude Code setup, the part that i
 | Command | What | Model |
 |---|---|---|
 | `/mission <slug or one-liner> [--from phase] [--until phase] [--yolo]` | The master orchestrator. Runs `playbook/` end to end. | orchestrates; delegates by tier |
-| `/scan` | Dual-track scout: weekend builds + moonshot signals. Cheap. | Haiku/Sonnet |
-| `/radar` | Weekly moonshot deep-think against `RUBRIC.md`. Pushes an alert when a first-mover signal scores 8+. | Fable |
-| `/idea <one-liner>` | Capture into the vault with a gut-check. | session |
+| `/prospect [slug or steer]` | Weekly big-track engine. Reads pain, shifts, discourse, and money signals, synthesizes SaaS ideas, gates on zero-ops, scores on Rubric B, writes a brief. Pushes an alert at 8+. Procedure lives in the vault at `scanner/PROSPECT.md`. | Fable, Sonnet readers |
+| `/scan` | Weekend-track scout: titles only, cheap. Hands bigger signals to prospect. | Haiku/Sonnet |
+| `/idea <one-liner> [--big]` | Capture into the vault with a gut-check. | session |
 | `/weekend [steer]` | Triage the inbox, validate a shortlist, pick one. | session + WebSearch |
 
 Portable skills that ship with the base layer: `unslop`, `review-checkpoint`, `writing-for-agents`, `skill-help`, `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`, `ponytail-review`, `diagnosing-bugs`, `blast-radius`, `remember-project`.
@@ -43,7 +43,7 @@ Portable skills that ship with the base layer: `unslop`, `review-checkpoint`, `w
 |---|---|---|
 | Thinking, validation, planning, council | `strategist` | Fable |
 | Adversarial verification after build and test | `verifier` | Fable |
-| Plan, design, and ship review like a real PM | `pm` | Fable |
+| Plan, design, and ship review like a real PM | `pm` | Opus |
 | UX flows, screens, states, tokens | `designer` | Sonnet |
 | Implementation, chunk by chunk | `builder` | Sonnet |
 | Driving the browser, collecting evidence | `tester` | Sonnet |
@@ -62,7 +62,7 @@ Cost guards: 3 builder attempts per chunk, 3 test-fix loops per screen, then the
 
 - **Laptop:** `/mission` in a normal session. Testing uses Claude in Chrome (your real browser).
 - **Cloud, laptop closed:** `claude --cloud` then `/mission <slug>`. Testing switches to Playwright MCP (headless). Deploy needs `VERCEL_TOKEN` in the cloud environment. See `routines/README.md` for the environment checklist and the network allowlist.
-- **Scheduled:** `/scan` and `/radar` run as cloud routines. Alerts arrive as mobile push.
+- **Scheduled:** `/prospect` (Sunday) and `/scan` (Friday) run as cloud routines. Alerts arrive as mobile push.
 
 ## Install on a fresh machine
 
@@ -99,11 +99,11 @@ The cloud environment (network allowlist, Vercel credential, setup script) lives
 
 | Path | What |
 |---|---|
-| `skills/` | The 5 ANBU skills (`/mission` `/scan` `/radar` `/idea` `/weekend`) plus the 13 portable base-layer skills. |
+| `skills/` | The 5 ANBU skills (`/mission` `/prospect` `/scan` `/idea` `/weekend`) plus the 13 portable base-layer skills. |
 | `playbook/` | One file per phase: inputs, who runs, steps, gate, outputs. `/mission` reads one at a time. |
 | `agents/` | The seven tiered subagents. |
-| `RUBRIC.md` | Two scorecards: weekend feasibility (0-10) and moonshot potential (0-10). |
-| `routines/` | Prompts and config for the cloud scout and radar, plus the cloud environment checklist. |
+| `RUBRIC.md` | The PM review (C). Rubrics A (weekend) and B (big-track SaaS) live in the vault's `scanner/RUBRIC.md`. |
+| `routines/` | Prompts and config for the cloud prospect and scout, plus the cloud environment checklist. |
 | `templates/` | Mission state, per-project CLAUDE.md, launch kit. |
 | `ANBU.md` | The doctrine. Read it once. |
 
@@ -116,3 +116,4 @@ The cloud environment (network allowlist, Vercel credential, setup script) lives
 - [ ] Chrome Web Store credentials (needed only for automated extension upload)
 - [x] First big-game milestone deployed through `/mission` in milestone mode: [sesh-live](https://github.com/devanshchoudhary20/sesh-live) M0 probe, 2026-09-25 (npm publish and the probe posts are the human's)
 - [x] `/radar` routine created (weekly Sunday 8:00 IST, Fable) and `idea-scan` re-pointed at the dual-track prompt with WebSearch fallback
+- [x] Moonshot merged into the big track, `/radar` replaced by `/prospect` (reads instead of skims, zero-ops SaaS gate), `idea-scan` cut to weekly weekend-only, 2026-09-27

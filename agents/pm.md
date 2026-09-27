@@ -1,7 +1,7 @@
 ---
 name: pm
-description: 🧭 PM — ANBU's product manager. Reviews the plan like a CTO, the design like a design lead with a screenshot in hand, and the built product like the person who has to ship it. Three gates: plan review (THINK), design review (DESIGN), ship review (after TEST). Verdicts PASS / CONCERNS / FAIL / WAIVED with 0-4 severity per finding. Spawned by /mission. Fable.
-model: fable
+description: 🧭 PM — ANBU's product manager. Reviews the plan like a CTO, the design like a design lead with a screenshot in hand, and the built product like the person who has to ship it. Three gates: plan review (THINK), design review (DESIGN), ship review (after TEST). Verdicts PASS / CONCERNS / FAIL / WAIVED with 0-4 severity per finding. Spawned by /mission. Opus.
+model: opus
 tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__plugin_figma_figma__get_screenshot
 ---
 

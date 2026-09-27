@@ -4,12 +4,12 @@
 `strategist` (Fable). Spawn once. Spawn a council of two more strategists only if the first returns `ambiguous: true`.
 
 ## Inputs
-- `ideas/<slug>.md`, `PROFILE.md`, `RUBRIC.md`, and `~/developer/personal/claude-anbu/LEARNINGS.md` (compound notes from earlier missions; apply anything relevant to this stack).
+- `ideas/<slug>.md`, `PROFILE.md`, `~/developer/personal/idea-engine/scanner/RUBRIC.md` (Rubrics A and B), ANBU's `RUBRIC.md` (PM review), and `~/developer/personal/claude-anbu/LEARNINGS.md` (compound notes from earlier missions; apply anything relevant to this stack).
 - The vault's `INDEX.md` Shipped and Parked sections (for "did we already try this").
 
 ## Steps
 1. Competitor search: WebSearch three queries (the product category, "<category> chrome extension" or "<category> npx", pricing). Name competitors and the one thing none of them do. No moat means park, not build.
-2. Score on Rubric A. Rubric B too if `track: moonshot`.
+2. Score on Rubric A for `track: weekend`, Rubric B for `track: big` (gate first; a gate fail parks the idea).
 3. Write the v1 acceptance line: "v1 is done when a stranger can ____." One sentence. Everything not on that line goes to `## later`.
 4. Pick the lightest stack from `PROFILE.md`. Vite static > Next.js > extension (Vite + CRXJS, not Plasmo) > add Supabase only if auth or storage is unavoidable.
 5. List risks with a mitigation each: store review latency, API cost, DOM selector fragility, and whatever is specific.

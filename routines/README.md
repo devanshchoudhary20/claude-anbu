@@ -4,8 +4,10 @@ Two routines run in Anthropic's cloud against the vault repo `devanshchoudhary20
 
 | Routine | Cron (UTC) | Model | Prompt | Tools |
 |---|---|---|---|---|
-| `idea-scan` | `30 3 * * 2,5,6` (9:00 IST Tue, Fri, Sat) | claude-sonnet-5 | `scan.prompt.md` | Bash Read Write Edit Glob Grep WebSearch WebFetch PushNotification |
-| `idea-radar` | `30 2 * * 0` (8:00 IST Sunday) | claude-fable-5-1 | `radar.prompt.md` | same |
+| `idea-prospect` | `30 2 * * 0` (8:00 IST Sunday) | claude-fable-5-1 | `prospect.prompt.md`, a pointer to the vault's `scanner/PROSPECT.md` | Bash Read Write Edit Glob Grep WebSearch WebFetch PushNotification |
+| `idea-scan` | `30 3 * * 5` (9:00 IST Friday) | claude-sonnet-5 | `scan.prompt.md` | same |
+
+The routine prompts are pasted into the routine config, so after editing a prompt file here, push it to the routine with `/schedule` or the RemoteTrigger update action. The prospect prompt only points at `scanner/PROSPECT.md`, so procedure changes need a vault push, not a routine update.
 
 ## Verified 2026-09-24
 
