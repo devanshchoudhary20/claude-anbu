@@ -27,3 +27,8 @@ One dated entry per shipped mission, appended by LAUNCH and read by THINK. Keep 
 - Testers must write evidence under the project's `.anbu/`, never the vault; the captain checks the path on every report.
 - The Chrome Web Store Developer Dashboard cannot be driven by Claude in Chrome: Chrome refuses to script the extensions gallery. First submission is manual by a person; later uploads go through the API with the item id.
 - npm 11 rejects `bin` paths with a `./` prefix and silently strips the command at publish; use `index.js`. Publish needs 2FA on the account; the browser-confirm flow fails from a non-TTY runner, so the user runs `npm publish --otp=<code>` in a real terminal.
+
+## 2026-09-27: local models OOM the whole WSL box (flipcheck)
+- A local model server loaded next to Claude Code crashed WSL and the session three times on a 7.3 GB WSL2 VM. Run local model servers only inside a memory-capped systemd user unit (`systemd-run --user -p MemoryMax=... -p MemorySwapMax=0 -p OOMScoreAdjust=1000`); the cgroup OOM then kills only the model. The machine's wrapper is `~/.local/bin/ollaya-safe`.
+- Measure a model's load peak under a cap before planning around it. kev:0.8b F32 on onnxruntime peaks above 4.5 GB during load, so "runs on any laptop" was false for 8 GB machines.
+- Fix: `.wslconfig` raised WSL to `memory=10GB`, `swap=8GB` on a 15 GB laptop; kev:0.8b then peaks at 5.85 GB inside a 6.5 GB cap with 0.4 s warm calls.
