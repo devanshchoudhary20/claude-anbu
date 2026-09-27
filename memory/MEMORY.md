@@ -1,0 +1,4 @@
+- [Don't ask permission for everything](autonomy-dont-ask-permission.md) — proceed autonomously; only stop for genuinely risky/irreversible actions
+- [Personal accounts only](personal-accounts-only.md) — every service uses the personal account; gh defaults to company; Claude in Chrome must select the personal profile
+- [Testing and review preferences](testing-and-review-preferences.md) — Claude in Chrome only locally, user reviews extension pages, PM critique expected, big-game track first
+- [Personal folder git creds](personal-folder-git-creds.md) — repos under ~/developer/personal use personal GitHub account `devanshchoudhary20` via SSH alias `github.com-personal`, never company
