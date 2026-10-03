@@ -31,7 +31,7 @@ Synthesized 2026-09-25 from Marty Cagan's four risks, BMAD's PM/PO checklists an
 
 ### C3. Ship review, after TEST, on the built product
 1. Built matches the promise: each acceptance-line clause traced to a screenshot.
-2. Built matches the mockup: per screen, layout, hierarchy, spacing, color compared to the Figma frame.
+2. Built matches the mockup: per screen, layout, hierarchy, spacing, color compared to the Pencil export in `.anbu/design/`.
 3. Both themes screenshot and readable.
 4. First run is obvious with zero explanation.
 5. Every non-happy state from the screens file is reachable in the evidence, or listed as a limitation with a reason.

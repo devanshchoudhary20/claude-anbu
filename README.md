@@ -85,7 +85,7 @@ git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer
 8. Install the `vercel` and `chrome-webstore-upload-cli` npm CLIs.
 9. Install the `frontend-design`, `pr-review-toolkit`, `figma`, and `github` Claude Code plugins, plus the Context7 and Playwright MCPs.
 
-It then prints what stays manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, the Claude in Chrome extension, and Figma plugin authorization on first use.
+It then prints what stays manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, the Claude in Chrome extension, and `pen login` for the pen.dev CLI the designer draws with.
 
 **Windows:** run it from Git Bash. Symlinks need admin rights or Developer Mode there, so `setup.sh` copies files instead of linking them. That means a `git pull` in `claude-anbu` doesn't update `~/.claude` on its own: rerun `setup.sh` after every pull.
 

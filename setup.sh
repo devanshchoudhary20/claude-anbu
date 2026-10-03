@@ -73,10 +73,11 @@ if [ -d "$PERSONAL/idea-engine/.git" ]; then skip "vault present"; else
   git clone -q git@github.com-personal:devanshchoudhary20/idea-engine.git "$PERSONAL/idea-engine" 2>/dev/null \
   || git clone -q https://github.com/devanshchoudhary20/idea-engine.git "$PERSONAL/idea-engine" && ok "vault cloned"; fi
 
-echo "8/9 npm CLIs (vercel, chrome-webstore-upload-cli)"
+echo "8/9 npm CLIs (vercel, chrome-webstore-upload-cli, pen.dev)"
 for pkg in vercel chrome-webstore-upload-cli; do
   bin="${pkg%-cli}"; command -v "$bin" >/dev/null && skip "$pkg present" || { npm i -g "$pkg" >/dev/null 2>&1 && ok "$pkg installed" || need "$pkg (npm i -g $pkg)"; }
 done
+command -v pen >/dev/null && skip "@pen.dev/cli present" || { npm i -g @pen.dev/cli >/dev/null 2>&1 && ok "@pen.dev/cli installed" || need "@pen.dev/cli (npm i -g @pen.dev/cli)"; }
 
 echo "9/9 Claude Code plugins + MCP servers"
 PLUGINS="$(claude plugin list 2>/dev/null)"; MCPS="$(claude mcp list 2>/dev/null)"
@@ -93,7 +94,8 @@ printf '%s' "$MCPS" | grep -q '^playwright:' && skip "playwright MCP present" ||
 echo "manual, once per machine"
 echo "  - gh auth login for the personal account, and an SSH host alias 'github.com-personal' in ~/.ssh/config"
 echo "  - claude login (Pro/Max) and /web-setup once, so cloud sessions and routines can reach your repos"
-echo "  - Claude in Chrome extension installed and enabled, for local TEST phases; authorize Figma on the personal account on first use"
+echo "  - Claude in Chrome extension installed and enabled, for local TEST phases"
+echo "  - pen login (pen.dev, personal account), so the designer can draw screens headless"
 [ "$WIN" = 1 ] && echo "  - Windows: files were copied, not linked. Rerun setup.sh after every 'git pull' in claude-anbu."
 [ -d "$CEREBRUM" ] && [ ! -L "$CLAUDE/CLAUDE.md" ] && echo "  - company machine: run $CEREBRUM/setup.sh to layer MEGAMIND on top"
 echo

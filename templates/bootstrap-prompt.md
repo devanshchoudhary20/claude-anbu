@@ -26,5 +26,5 @@ Bootstrap my personal Claude Code setup on this machine. Work autonomously; do n
 
 4. Verify. Confirm these exist: ~/.claude/CLAUDE.md (starts with "# My Development Context"), ~/.claude/settings.json (valid JSON, contains "statusLine"), ~/.claude/statusline-command.sh, ~/.claude/skills/mission, ~/.claude/skills/unslop, ~/.claude/agents/strategist.md, ~/developer/personal/idea-engine/.git, and a memory folder under ~/.claude/projects whose name ends with developer-personal (starts with C--Users on Windows, -Users on mac), containing MEMORY.md and four .md files. Run: echo '{}' | bash ~/.claude/statusline-command.sh and confirm it prints a line.
 
-5. Report a short table of each step and its result, list what is still manual (Claude in Chrome extension, Figma authorization on the personal account, claude /web-setup), and tell me to restart Claude Code so the new CLAUDE.md, skills, and status line load.
+5. Report a short table of each step and its result, list what is still manual (Claude in Chrome extension, `pen login` for pen.dev on the personal account, claude /web-setup), and tell me to restart Claude Code so the new CLAUDE.md, skills, and status line load.
 ```
