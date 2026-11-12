@@ -34,15 +34,12 @@ for d in "$ROOT"/skills/*/; do
 done
 for f in "$ROOT"/agents/*.md; do place "$f" "$CLAUDE/agents/$(basename "$f")"; ok "agent $(basename "$f" .md)"; done
 
-echo "3/9 global CLAUDE.md (base layer)"
-if [ -L "$CLAUDE/CLAUDE.md" ] && [ "$WIN" = 0 ]; then skip "CLAUDE.md is a symlink (cerebrum owns it and imports this base)"
-elif [ -f "$CLAUDE/CLAUDE.md" ] && cmp -s "$CLAUDE/CLAUDE.md" "$ROOT/CLAUDE.md"; then skip "CLAUDE.md up to date"
-else
-  [ -f "$CLAUDE/CLAUDE.md" ] && { cp "$CLAUDE/CLAUDE.md" "$CLAUDE/CLAUDE.md.pre-anbu.$(date +%s)"; skip "existing CLAUDE.md backed up"; }
-  cp "$ROOT/CLAUDE.md" "$CLAUDE/CLAUDE.md"; ok "CLAUDE.md installed"
-fi
+echo "3/9 personal overlay → ~/developer/personal/CLAUDE.md"
+mkdir -p "$PERSONAL"
+place "$ROOT/CLAUDE.md" "$PERSONAL/CLAUDE.md"; ok "CLAUDE.md overlay linked (loads for every repo under $PERSONAL)"
+[ -e "$CLAUDE/CLAUDE.md" ] || skip "no ~/.claude/CLAUDE.md: MEGAMIND (claude-cerebrum) is not installed here, the overlay loads alone"
 
-echo "4/9 settings.json (base layer, merged over what exists)"
+echo "4/9 settings.json (merged over what exists)"
 if [ -L "$CLAUDE/settings.json" ] && [ "$WIN" = 0 ]; then skip "settings.json is a symlink (cerebrum owns it)"
 else
   node -e '
@@ -96,6 +93,6 @@ echo "  - gh auth login for the personal account, and an SSH host alias 'github.
 echo "  - claude login (Pro/Max) and /web-setup once, so cloud sessions and routines can reach your repos"
 echo "  - Claude in Chrome extension installed and enabled, for local TEST phases"
 [ "$WIN" = 1 ] && echo "  - Windows: files were copied, not linked. Rerun setup.sh after every 'git pull' in claude-anbu."
-[ -d "$CEREBRUM" ] && [ ! -L "$CLAUDE/CLAUDE.md" ] && echo "  - company machine: run $CEREBRUM/setup.sh to layer MEGAMIND on top"
+[ -d "$CEREBRUM" ] && [ ! -L "$CLAUDE/CLAUDE.md" ] && echo "  - company machine: run $CEREBRUM/setup.sh so MEGAMIND owns ~/.claude (CLAUDE.md, skills, agents, settings)"
 echo
 echo "ANBU ready. Restart Claude Code, then: cd $PERSONAL/idea-engine && /weekend"

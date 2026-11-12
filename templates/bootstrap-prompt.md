@@ -1,6 +1,6 @@
 # Bootstrap prompt for a fresh machine
 
-Paste this into Claude Code on the new machine after `claude login`. It installs the base layer and stops only for the two logins.
+Paste this into Claude Code on the new machine after `claude login`. It installs ANBU and stops only for the two logins.
 
 ```
 Bootstrap my personal Claude Code setup on this machine. Work autonomously; do not ask for confirmation except at the two manual login steps below. On Windows use Git Bash for every shell command.
@@ -24,7 +24,7 @@ Bootstrap my personal Claude Code setup on this machine. Work autonomously; do n
    bash ~/developer/personal/claude-anbu/setup.sh
    Read every line of the output. Fix any ✘ by installing what it names, then rerun setup.sh until a run shows only ✔ and – lines. setup.sh is idempotent. On Windows it copies files instead of linking, so it must be rerun after every git pull in that repo; remember that.
 
-4. Verify. Confirm these exist: ~/.claude/CLAUDE.md (starts with "# My Development Context"), ~/.claude/settings.json (valid JSON, contains "statusLine"), ~/.claude/statusline-command.sh, ~/.claude/skills/mission, ~/.claude/skills/unslop, ~/.claude/agents/strategist.md, ~/developer/personal/idea-engine/.git, and a memory folder under ~/.claude/projects whose name ends with developer-personal (starts with C--Users on Windows, -Users on mac), containing MEMORY.md and four .md files. Run: echo '{}' | bash ~/.claude/statusline-command.sh and confirm it prints a line.
+4. Verify. Confirm these exist: ~/developer/personal/CLAUDE.md (starts with "# Personal overlay"), ~/.claude/settings.json (valid JSON, contains "statusLine"), ~/.claude/statusline-command.sh, ~/.claude/skills/mission, ~/.claude/agents/strategist.md, ~/developer/personal/idea-engine/.git, and a memory folder under ~/.claude/projects whose name ends with developer-personal (starts with C--Users on Windows, -Users on mac), containing MEMORY.md and four .md files. Run: echo '{}' | bash ~/.claude/statusline-command.sh and confirm it prints a line.
 
-5. Report a short table of each step and its result, list what is still manual (Claude in Chrome extension, claude /web-setup), and tell me to restart Claude Code so the new CLAUDE.md, skills, and status line load.
+5. Report a short table of each step and its result, list what is still manual (Claude in Chrome extension, claude /web-setup), and tell me to restart Claude Code so the overlay, skills, and status line load.
 ```

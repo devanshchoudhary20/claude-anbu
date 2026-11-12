@@ -1,0 +1,20 @@
+{
+  "started": "YYYY-MM-DD",
+  "week": 1,
+  "current_module": "01-js-internals",
+  "last_session": null,
+  "items": {
+    "01-js-internals/event-loop": {
+      "status": "queued",
+      "scores": [],
+      "interval_days": 0,
+      "next_review": null,
+      "weak_spots": []
+    }
+  },
+  "machine_coding_done": [],
+  "dsa_done": [],
+  "behavioral_stories": [],
+  "mocks": [],
+  "jumps": []
+}

@@ -23,7 +23,7 @@ The vault (ideas, board, profile) lives in `~/developer/personal/idea-engine`. B
 
 ## What lives here
 
-ANBU also owns the portable base layer of the Claude Code setup, the part that installs on any machine: `CLAUDE.md` (global base rules), `settings.json` (base settings), `statusline-command.sh`, `memory/` (durable preferences copied into project memory), and 13 portable skills in `skills/`: `unslop`, `review-checkpoint`, `writing-for-agents`, `skill-help`, `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`, `ponytail-review`, `diagnosing-bugs`, `blast-radius`, `remember-project`. On a company machine, `claude-cerebrum` symlinks to those same skills and its `CLAUDE.md` imports ANBU's base with `@~/developer/personal/claude-anbu/CLAUDE.md`.
+ANBU also owns the personal machine setup: `CLAUDE.md` (the personal overlay, linked to `~/developer/personal/CLAUDE.md` so it loads for every repo under that folder), `settings.json`, `statusline-command.sh`, and `memory/` (durable preferences copied into project memory). The global base layer (persona, tiering, core rules, Unslop) and every portable skill belong to MEGAMIND (`claude-cerebrum`), which owns `~/.claude/CLAUDE.md`, `~/.claude/skills`, `~/.claude/agents`, and `~/.claude/settings.json`. On this Mac the ANBU skills and agents reach `~/.claude` through symlinks inside cerebrum.
 
 ## Commands
 
@@ -33,9 +33,8 @@ ANBU also owns the portable base layer of the Claude Code setup, the part that i
 | `/prospect [slug or steer]` | Weekly big-track engine. Reads pain, shifts, discourse, and money signals, synthesizes SaaS ideas, gates on zero-ops, scores on Rubric B, writes a brief. Pushes an alert at 8+. Procedure lives in the vault at `scanner/PROSPECT.md`. | Fable, Sonnet readers |
 | `/scan` | Weekend-track scout: titles only, cheap. Hands bigger signals to prospect. | Haiku/Sonnet |
 | `/idea <one-liner> [--big]` | Capture into the vault with a gut-check. | session |
+| `/dojo [review | mock <round> | status | <module>]` | Senior FE interview trainer. Twelve modules in `dojo/`, Socratic probe, timed builds in `fe-dojo`, panel-style review, SM-2-lite reviews. | session |
 | `/weekend [steer]` | Triage the inbox, validate a shortlist, pick one. | session + WebSearch |
-
-Portable skills that ship with the base layer: `unslop`, `review-checkpoint`, `writing-for-agents`, `skill-help`, `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`, `ponytail-review`, `diagnosing-bugs`, `blast-radius`, `remember-project`.
 
 ## Model tiering (the token rule)
 
@@ -77,7 +76,7 @@ git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer
 
 1. Check for node, `claude`, `gh`, `git`, and `jq` (jq only warns; without it the status line stays blank).
 2. Link `skills/` and `agents/` into `~/.claude` (a pre-existing real skill directory is left alone, not overwritten).
-3. Install `CLAUDE.md` as the global base layer, or skip if `~/.claude/CLAUDE.md` is already a symlink (another repo, such as `claude-cerebrum`, owns it there).
+3. Link `CLAUDE.md` to `~/developer/personal/CLAUDE.md` as the personal overlay. It loads for every repo under that folder on top of whatever owns `~/.claude/CLAUDE.md`, and warns when nothing does.
 4. Merge `settings.json` into whatever is already at `~/.claude/settings.json`, or skip the same way if that path is a symlink.
 5. Link `statusline-command.sh` into `~/.claude`.
 6. Copy the durable memory files into this machine's project memory folders, without overwriting anything already there, and append only the missing `MEMORY.md` index lines.
@@ -89,9 +88,9 @@ It then prints what stays manual: `gh auth login` for the personal account plus 
 
 **Windows:** run it from Git Bash. Symlinks need admin rights or Developer Mode there, so `setup.sh` copies files instead of linking them. That means a `git pull` in `claude-anbu` doesn't update `~/.claude` on its own: rerun `setup.sh` after every pull.
 
-**On this Mac:** `claude-cerebrum` layers on top and owns `~/.claude/CLAUDE.md` and `~/.claude/settings.json` as symlinks, so steps 3 and 4 skip here on purpose. Run `claude-cerebrum/setup.sh` to wire that layer in.
+**On this Mac:** `claude-cerebrum` owns `~/.claude/CLAUDE.md`, `~/.claude/skills`, `~/.claude/agents`, and `~/.claude/settings.json` as symlinks, so step 4 skips here on purpose. Run `claude-cerebrum/setup.sh` to wire that in.
 
-`uninstall.sh` removes only what `setup.sh` placed: the skill and agent links (or copies, on Windows) and the status line symlink. It leaves `CLAUDE.md`, `settings.json`, and the memory files alone, since those are merged or copied rather than linked and may carry edits of your own.
+`uninstall.sh` removes only what `setup.sh` placed: the skill and agent links (or copies, on Windows), the personal overlay link, and the status line symlink. It leaves `settings.json` and the memory files alone, since those are merged or copied rather than linked and may carry edits of your own.
 
 The cloud environment (network allowlist, Vercel credential, setup script) lives on your claude.ai account, not the machine, so it carries over. See `routines/README.md`.
 
@@ -99,7 +98,7 @@ The cloud environment (network allowlist, Vercel credential, setup script) lives
 
 | Path | What |
 |---|---|
-| `skills/` | The 5 ANBU skills (`/mission` `/prospect` `/scan` `/idea` `/weekend`) plus the 13 portable base-layer skills. |
+| `skills/` | The 6 ANBU skills: `/mission` `/prospect` `/scan` `/idea` `/weekend` `/dojo`. |
 | `playbook/` | One file per phase: inputs, who runs, steps, gate, outputs. `/mission` reads one at a time. |
 | `agents/` | The seven tiered subagents. |
 | `RUBRIC.md` | The PM review (C). Rubrics A (weekend) and B (big-track SaaS) live in the vault's `scanner/RUBRIC.md`. |
