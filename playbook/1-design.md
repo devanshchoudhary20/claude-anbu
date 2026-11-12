@@ -15,11 +15,11 @@
 5. Write `.anbu/screens.md`.
 
 ## Steps (continued)
-6. Pencil: draw every screen and state in `<project>/design/<slug>.pen` through the headless pen.dev CLI (`pen interactive`), with tokens as light and dark variables, and export each frame to `.anbu/design/<screen>-<state>-<theme>.png`. The designer agent file has the exact procedure. It needs `pen login` once per machine on the personal account; if `pen status` says not authenticated, the phase pauses for the human. Products with no graphical UI (a CLI, a library) skip this step, and the exact terminal text in screens.md is the design.
+6. OpenPencil: draw every screen and state in `<project>/design/<slug>.fig` through the headless OpenPencil CLI (`openpencil eval`), with tokens as light and dark variables, and export each frame to `.anbu/design/<screen>-<state>-<theme>.png`. The designer agent file has the exact procedure. It needs no login; if the `openpencil` command is missing and `npm i -g @open-pencil/cli` fails, the phase pauses for the human. Products with no graphical UI (a CLI, a library) skip this step, and the exact terminal text in screens.md is the design.
 7. PM gate 2: spawn `pm` on the PNG exports in `.anbu/design/` (or, for a CLI, the terminal text in screens.md). FAIL returns to the designer with the findings (counts an attempt). CONCERNS or PASS continues; CONCERNS findings are carried into the builder prompts.
 
 ## Gate
-`.anbu/screens.md` lists every screen from the plan with all four states, plus a tokens section. For a graphical UI, the `.pen` file exists and `.anbu/design/` holds a light and a dark PNG for every screen and state listed in the `## Design files` table. Project builds empty (`npm run build` exit 0).
+`.anbu/screens.md` lists every screen from the plan with all four states, plus a tokens section. For a graphical UI, the `.fig` file exists and `.anbu/design/` holds a light and a dark PNG for every screen and state listed in the `## Design files` table. Project builds empty (`npm run build` exit 0).
 
 ## Cap
 2 attempts.

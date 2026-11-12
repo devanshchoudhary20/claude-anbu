@@ -82,10 +82,10 @@ git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer
 5. Link `statusline-command.sh` into `~/.claude`.
 6. Copy the durable memory files into this machine's project memory folders, without overwriting anything already there, and append only the missing `MEMORY.md` index lines.
 7. Clone the idea vault to `~/developer/personal/idea-engine` and create `~/developer/personal/projects`.
-8. Install the `vercel` and `chrome-webstore-upload-cli` npm CLIs.
+8. Install the `vercel`, `chrome-webstore-upload-cli`, and `@open-pencil/cli` npm CLIs.
 9. Install the `frontend-design`, `pr-review-toolkit`, `figma`, and `github` Claude Code plugins, plus the Context7 and Playwright MCPs.
 
-It then prints what stays manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, the Claude in Chrome extension, and `pen login` for the pen.dev CLI the designer draws with.
+It then prints what stays manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, and the Claude in Chrome extension. The OpenPencil CLI the designer draws with needs no login.
 
 **Windows:** run it from Git Bash. Symlinks need admin rights or Developer Mode there, so `setup.sh` copies files instead of linking them. That means a `git pull` in `claude-anbu` doesn't update `~/.claude` on its own: rerun `setup.sh` after every pull.
 
