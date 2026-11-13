@@ -1,25 +1,27 @@
 # Phase 1: DESIGN
 
 ## Owner
-`designer` (Sonnet).
+`designer` (Opus) decides. `drafter` (Sonnet) scaffolds and draws. The captain spawns them in the order below, one at a time.
 
 ## Inputs
 - `.anbu/plan.md`, `PROFILE.md`.
-- `templates/PROJECT_CLAUDE.md` to copy into the project as `CLAUDE.md`.
+- `templates/PROJECT_CLAUDE.md` and `templates/check-comments.mjs` for the scaffold.
+- `playbook/design-kit.md` (designer) and `playbook/openpencil.md` (drafter). The agent files point at them.
 
 ## Steps
-1. Scaffold the project at `~/developer/personal/projects/<slug>` with the stack's official tool. `git init`, first commit "chore: scaffold". Copy the project CLAUDE.md and `templates/check-comments.mjs` into `scripts/`, and wire `"lint": "<linter> && node scripts/check-comments.mjs"` in package.json so the single-line-comment rule is enforced by the build, not by review. Create `.anbu/` and move `plan.md` in if THINK wrote it elsewhere.
-2. For each screen in the plan, write its happy path as numbered states, then the empty, loading, error, and success state. Every external value gets a fallback named here, not later.
-3. Pick a design direction: one typeface pair, a 5-token color scale, spacing scale, radius. Use the `frontend-design` skill if installed. No Inter-plus-purple-gradient default.
-4. Component plan: which shadcn or Radix pieces, which custom. Custom needs a reason.
-5. Write `.anbu/screens.md`.
+1. Spawn `drafter` in mode `scaffold` at `~/developer/personal/projects/<slug>`. Check `npm run build` and `npm run lint` yourself.
+2. Spawn `designer` in mode `brief`. It writes `.anbu/brief.md` (arrival, job, three references, three concepts, the pick, direction) and `.anbu/screens.md` (every screen's happy path, four states with exact copy, fallbacks, tokens).
+3. Spawn `drafter` in mode `draw`. It draws every screen and state in `<project>/design/<slug>.fig` and exports light and dark PNGs to `.anbu/design/`. A product with no graphical UI (a CLI, a library) skips steps 3 and 4; the exact terminal text in screens.md is the design.
+4. Spawn `designer` in mode `critique` on the PNGs. On `verdict: revise`, spawn `drafter` in mode `revise` once. Findings still open after that round go to the PM as written.
+5. PM gate 2: spawn `pm` on the PNG exports in `.anbu/design/`, the brief, and the critique (or, for a CLI, the brief and the terminal text). FAIL returns the findings to the designer when they are about the brief or the screens file, and to the drafter when they are about the drawing (counts an attempt). CONCERNS or PASS continues; CONCERNS findings are carried into the builder prompts.
 
-## Steps (continued)
-6. OpenPencil: draw every screen and state in `<project>/design/<slug>.fig` through the headless OpenPencil CLI (`openpencil eval`), with tokens as light and dark variables, and export each frame to `.anbu/design/<screen>-<state>-<theme>.png`. The designer agent file has the exact procedure. It needs no login; if the `openpencil` command is missing and `npm i -g @open-pencil/cli` fails, the phase pauses for the human. Products with no graphical UI (a CLI, a library) skip this step, and the exact terminal text in screens.md is the design.
-7. PM gate 2: spawn `pm` on the PNG exports in `.anbu/design/` (or, for a CLI, the terminal text in screens.md). FAIL returns to the designer with the findings (counts an attempt). CONCERNS or PASS continues; CONCERNS findings are carried into the builder prompts.
+If the `openpencil` command is missing and `npm i -g @open-pencil/cli` fails, the phase pauses for the human.
 
 ## Gate
-`.anbu/screens.md` lists every screen from the plan with all four states, plus a tokens section. For a graphical UI, the `.fig` file exists and `.anbu/design/` holds a light and a dark PNG for every screen and state listed in the `## Design files` table. Project builds empty (`npm run build` exit 0).
+- `.anbu/brief.md` has all six sections, three reference URLs, and three concepts with one picked.
+- `.anbu/screens.md` lists every screen from the plan with all four states, plus a tokens section.
+- For a graphical UI: the `.fig` exists, `.anbu/design/` holds a light and a dark PNG for every row of the `## Design files` table, and `.anbu/design/critique.md` ends with a verdict.
+- `npm run build` exits 0 on the scaffold.
 
 ## Cap
 2 attempts.

@@ -28,6 +28,11 @@ Synthesized 2026-09-25 from Marty Cagan's four risks, BMAD's PM/PO checklists an
 6. Reuses the host's patterns (GitHub, the OS, the browser) rather than inventing.
 7. Copy is specific: no "Something went wrong", no "Item".
 8. Hierarchy: the one thing the user came for is the biggest thing on the screen.
+9. Five-second test: from the first frame alone, a stranger can say what this is, who it is for, and what to do next.
+10. Shortest path: count the steps from arrival to the acceptance line. A step the brief cannot justify is a finding.
+11. One primary action per screen, and it is the one the brief names.
+12. The brief compared three structurally different concepts and cites three real reference URLs; the picked concept is visible in the frames.
+13. Web: the 390-wide frame holds with nothing clipped and tap targets of 44px or more.
 
 ### C3. Ship review, after TEST, on the built product
 1. Built matches the promise: each acceptance-line clause traced to a screenshot.

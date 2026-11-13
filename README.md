@@ -15,8 +15,9 @@
                                      /mission <slug>
                                             │
    THINK ─▶ DESIGN ─▶ BUILD ─▶ TEST ─▶ SHIP ─▶ LAUNCH        (each phase gated, resumable)
-   Fable     Sonnet    Sonnet   Sonnet  Sonnet   Sonnet
-              +Fable verify after BUILD and TEST
+   Fable     Opus +    Sonnet   Sonnet  Sonnet   Sonnet
+             Sonnet
+              +Fable verify after BUILD and TEST, /retro at the end or on a pause
 ```
 
 The vault (ideas, board, profile) lives in `~/developer/personal/idea-engine`. Built products live in `~/developer/personal/projects/<slug>`. ANBU is only the brain and the hands.
@@ -35,6 +36,10 @@ ANBU also owns the personal machine setup: `CLAUDE.md` (the personal overlay, li
 | `/idea <one-liner> [--big]` | Capture into the vault with a gut-check. | session |
 | `/dojo [review | mock <round> | status | <module>]` | Senior FE interview trainer. Twelve modules in `dojo/`, Socratic probe, timed builds in `fe-dojo`, panel-style review, SM-2-lite reviews. | session |
 | `/weekend [steer]` | Triage the inbox, validate a shortlist, pick one. | session + WebSearch |
+| `/pm <target>` | One-off product review by the `pm` agent: a plan, mockups, or a built product. | Opus |
+| `/verify [base ref]` | One-off adversarial check by the `verifier` against a done-condition. | Fable |
+| `/design <screen> [--draw]` | One-off design pass: brief with three concepts, screens file, optional mockups and critique. | Opus, Sonnet draws |
+| `/retro <slug>` | The learning pass. Proposes edits to `learnings/`, the playbook, and the agents from one mission's record; you approve. | session |
 
 ## Model tiering (the token rule)
 
@@ -43,7 +48,8 @@ ANBU also owns the personal machine setup: `CLAUDE.md` (the personal overlay, li
 | Thinking, validation, planning, council | `strategist` | Fable |
 | Adversarial verification after build and test | `verifier` | Fable |
 | Plan, design, and ship review like a real PM | `pm` | Opus |
-| UX flows, screens, states, tokens | `designer` | Sonnet |
+| Design brief, concepts, screens, states, tokens, critique | `designer` | Opus |
+| Scaffold and OpenPencil mockups | `drafter` | Sonnet |
 | Implementation, chunk by chunk | `builder` | Sonnet |
 | Driving the browser, collecting evidence | `tester` | Sonnet |
 | Deploy, store upload, launch kit | `shipper` | Sonnet |
@@ -84,7 +90,7 @@ git clone git@github.com-personal:devanshchoudhary20/claude-anbu.git ~/developer
 8. Install the `vercel`, `chrome-webstore-upload-cli`, and `@open-pencil/cli` npm CLIs.
 9. Install the `frontend-design`, `pr-review-toolkit`, `figma`, and `github` Claude Code plugins, plus the Context7 and Playwright MCPs.
 
-It then prints what stays manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, and the Claude in Chrome extension. The OpenPencil CLI the designer draws with needs no login.
+It then prints what stays manual: `gh auth login` for the personal account plus the `github.com-personal` SSH alias, `claude login` and `/web-setup`, and the Claude in Chrome extension. The OpenPencil CLI the drafter draws with needs no login.
 
 **Windows:** run it from Git Bash. Symlinks need admin rights or Developer Mode there, so `setup.sh` copies files instead of linking them. That means a `git pull` in `claude-anbu` doesn't update `~/.claude` on its own: rerun `setup.sh` after every pull.
 
@@ -98,9 +104,10 @@ The cloud environment (network allowlist, Vercel credential, setup script) lives
 
 | Path | What |
 |---|---|
-| `skills/` | The 6 ANBU skills: `/mission` `/prospect` `/scan` `/idea` `/weekend` `/dojo`. |
-| `playbook/` | One file per phase: inputs, who runs, steps, gate, outputs. `/mission` reads one at a time. |
-| `agents/` | The seven tiered subagents. |
+| `skills/` | The 10 ANBU skills: `/mission` `/prospect` `/scan` `/idea` `/weekend` `/dojo` `/pm` `/verify` `/design` `/retro`. |
+| `playbook/` | One file per phase: inputs, who runs, steps, gate, outputs. `/mission` reads one at a time. Plus two references: `openpencil.md` (the drafter's CLI manual) and `design-kit.md` (dated list of free design tools). |
+| `learnings/` | One file per role, read by that agent at the start of every spawn. `/retro` is the only writer. |
+| `agents/` | The nine tiered subagents. `pm`, `verifier`, `designer`, `builder`, and `tester` keep their own notes in `~/.claude/agent-memory/<name>/` (machine-local), which `/retro` reviews. |
 | `RUBRIC.md` | The PM review (C). Rubrics A (weekend) and B (big-track SaaS) live in the vault's `scanner/RUBRIC.md`. |
 | `routines/` | Prompts and config for the cloud prospect and scout, plus the cloud environment checklist. |
 | `templates/` | Mission state, per-project CLAUDE.md, launch kit. |

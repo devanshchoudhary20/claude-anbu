@@ -5,7 +5,7 @@ One file per phase. `/mission` reads the file for the phase it is entering and n
 | # | Phase | Owner | Gate artifact |
 |---|---|---|---|
 | 0 | think | strategist (Fable) | `.anbu/plan.md` with score, scope line, later list, stack, risks |
-| 1 | design | designer (Sonnet) | `.anbu/screens.md` with every screen's empty, loading, error, success states and tokens |
+| 1 | design | designer (Opus) decides, drafter (Sonnet) scaffolds and draws | `.anbu/brief.md` with three concepts and a pick, `.anbu/screens.md` with every screen's four states and tokens, PNG exports with a critique verdict |
 | 2 | build | builder (Sonnet) per chunk, verifier (Fable) after | `npm run build` exit 0, `npm run lint` exit 0, verifier not RED |
 | 3 | test | tester (Sonnet), verifier (Fable) after | `.anbu/evidence/` with a recording or screenshots per screen and a pass table |
 | 4 | ship | shipper (Sonnet) | a live URL that returns 200 from `curl`, or a store item id |

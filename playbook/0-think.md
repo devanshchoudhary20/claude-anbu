@@ -4,7 +4,7 @@
 `strategist` (Fable). Spawn once. Spawn a council of two more strategists only if the first returns `ambiguous: true`.
 
 ## Inputs
-- `ideas/<slug>.md`, `PROFILE.md`, `~/developer/personal/idea-engine/scanner/RUBRIC.md` (Rubrics A and B), ANBU's `RUBRIC.md` (PM review), and `~/developer/personal/claude-anbu/LEARNINGS.md` (compound notes from earlier missions; apply anything relevant to this stack).
+- `ideas/<slug>.md`, `PROFILE.md`, `~/developer/personal/idea-engine/scanner/RUBRIC.md` (Rubrics A and B), and ANBU's `RUBRIC.md` (PM review). The strategist reads `learnings/strategist.md` on its own.
 - The vault's `INDEX.md` Shipped and Parked sections (for "did we already try this").
 
 ## Steps
